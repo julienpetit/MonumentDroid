@@ -1,4 +1,4 @@
 MonumentDroid
 =============
 
-Application Android 4.1
+Application Android
