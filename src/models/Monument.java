@@ -1,4 +1,4 @@
-package com.android.models;
+package models;
 
 import java.security.Provider;
 import java.util.Date;
@@ -10,9 +10,9 @@ import android.location.Location;
 import android.text.format.Time;
 import android.util.Log;
 
-import com.android.exceptions.AttributNoValidException;
-import com.android.exceptions.MonumentNotFoundException;
-import com.android.exceptions.UserNotFoundException;
+import exceptions.AttributNoValidException;
+import exceptions.MonumentNotFoundException;
+import exceptions.UserNotFoundException;
 
 public class Monument {
 
@@ -114,6 +114,8 @@ public class Monument {
 	
 	private Monument cursorToMonument(Cursor c){
 		//si aucun élément n'a été retourné dans la requête, on renvoie null
+		
+		
 		if (c.getCount() == 0)
 			return null;
  

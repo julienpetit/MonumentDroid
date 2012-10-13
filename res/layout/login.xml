@@ -9,4 +9,9 @@
         android:text="@string/title_login"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <ListView
+        android:id="@+login/listViewUsers"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
 </LinearLayout>

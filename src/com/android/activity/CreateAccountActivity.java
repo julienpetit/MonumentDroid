@@ -1,4 +1,5 @@
 package com.android.activity;
+import models.User;
 import preferences.Prefs;
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +14,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.models.User;
 
 public class CreateAccountActivity extends Activity {
     

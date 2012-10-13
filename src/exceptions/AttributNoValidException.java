@@ -1,4 +1,4 @@
-package com.android.exceptions;
+package exceptions;
 
 public class AttributNoValidException extends Exception {
 

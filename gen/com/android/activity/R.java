@@ -23,30 +23,41 @@ public final class R {
         public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
-        public static final int map=0x7f090001;
-        public static final int menu_settings=0x7f090002;
-        public static final int user=0x7f090000;
+        public static final int map=0x7f0a0001;
+        public static final int menu_settings=0x7f0a0002;
+        public static final int user=0x7f0a0000;
     }
     public static final class layout {
         public static final int createaccount=0x7f030000;
-        public static final int login=0x7f030001;
-        public static final int main=0x7f030002;
-        public static final int mapmonuments=0x7f030003;
-        public static final int preferences=0x7f030004;
+        public static final int listview_item_user=0x7f030001;
+        public static final int login=0x7f030002;
+        public static final int main=0x7f030003;
+        public static final int mapmonuments=0x7f030004;
+        public static final int preferences=0x7f030005;
+    }
+    public static final class login {
+        public static final int dateInscription=0x7f080001;
+        public static final int listViewUsers=0x7f080002;
+        public static final int loginUser=0x7f080000;
     }
     public static final class main {
-        public static final int title_welcome=0x7f080000;
+        public static final int title_welcome=0x7f090000;
     }
     public static final class menu {
         public static final int activity_main=0x7f060000;
-        public static final int menu_monument_droid=0x7f060001;
+        public static final int menu_login=0x7f060001;
+        public static final int menu_monument_droid=0x7f060002;
+    }
+    public static final class menu_login {
+        public static final int create_account=0x7f0b0000;
     }
     public static final class menu_monument_droid {
-        public static final int goToPreferences=0x7f0a0000;
-        public static final int switch_account=0x7f0a0001;
+        public static final int goToPreferences=0x7f0c0000;
+        public static final int switch_account=0x7f0c0001;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
+        public static final int libelle_create_account=0x7f04000d;
         public static final int libelle_createaccount_already_account=0x7f040009;
         public static final int libelle_createaccount_login=0x7f040005;
         public static final int libelle_createaccount_password=0x7f040006;
