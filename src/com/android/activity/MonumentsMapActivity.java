@@ -11,6 +11,9 @@ import com.google.android.maps.MapActivity;
 
 public class MonumentsMapActivity extends MapActivity implements LocationListener {
 
+	@SuppressWarnings("unused")
+	private final String LOG_ID = this.getClass().getName();
+	
 	private Location location;
 	private long update_time = 5000; //milliseconds
 	private float update_distance = 5; //meters
@@ -19,6 +22,7 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.mapmonuments);
 
 

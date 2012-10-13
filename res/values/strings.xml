@@ -3,5 +3,15 @@
     <string name="app_name">droid</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="libelle_preferences_menu">Préférences</string>
+    <string name="libelle_quitter_menu">Quitter</string>
+    <string name="libelle_createaccount_login">Nom d\'utilisateur</string>
+    <string name="libelle_createaccount_password">Mot de passe</string>
+    <string name="libelle_createaccount_validate_account">S\'enregistrer</string>
+    <string name="title_createaccount">Créer un compte</string>
+    <string name="libelle_createaccount_already_account">Déjà un compte?</string>
+    <string name="title_welcome">Bienvenue</string>
+    <string name="libelle_switch_account">Changer de compte</string>
+    <string name="title_login">Connexion</string>
 
 </resources>

@@ -6,10 +6,16 @@
     android:layout_alignParentTop="true" >
 
     <TextView
+        android:id="@+main/title_welcome"
+        style="@style/titleTextView"
+        android:text="@string/title_welcome"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
         android:id="@+id/user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Large Text"
+        android:text="Main"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button

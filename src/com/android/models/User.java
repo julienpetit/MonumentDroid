@@ -1,14 +1,16 @@
-package com.android.model;
+package com.android.models;
 
 import java.util.Date;
-
-import com.android.exceptions.AttributNoValidException;
-import com.android.exceptions.UserNotFoundException;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
+
+import com.android.exceptions.AttributNoValidException;
+import com.android.exceptions.UserNotFoundException;
 
 
 public class User {
@@ -170,6 +172,13 @@ public class User {
 		return this.id != 0;
 	}
 	
+	
+	public static long getNumberOfUsers(Context context)
+	{
+		Database database = new Database(context);
+		SQLiteDatabase db = database.getReadableDatabase();
+		return DatabaseUtils.queryNumEntries(db, TABLE_NAME);
+	}
 	
 	public String toString()
 	{

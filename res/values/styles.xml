@@ -2,4 +2,11 @@
 
     <style name="AppTheme" parent="android:Theme.Light" />
 
+    <style name="titleTextView">
+        <item name="android:background">#666</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:padding">8dip</item>
+    </style>
 </resources>

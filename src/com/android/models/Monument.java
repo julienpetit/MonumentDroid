@@ -1,4 +1,4 @@
-package com.android.model;
+package com.android.models;
 
 import java.security.Provider;
 import java.util.Date;

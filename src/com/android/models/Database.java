@@ -1,4 +1,4 @@
-package com.android.model;
+package com.android.models;
 
  
 import android.content.Context;

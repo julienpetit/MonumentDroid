@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="Utilisateur" >
+
+        <EditTextPreference
+            android:key="login"
+            android:summary="Entrez votre nom d&apos;utilisateur"
+            android:title="Nom d&apos;utilisateur" >
+        </EditTextPreference>
+
+        <EditTextPreference
+            android:key="password"
+            android:password="true"
+            android:summary="Entrez votre mot de passe"
+            android:title="Mot de passe" >
+        </EditTextPreference>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Notifications" >
+
+        <RingtonePreference
+            android:key="sonnerie"
+            android:summary="Choisissez la sonnerie pour les notifications"
+            android:title="Sonnerie de notification" >
+        </RingtonePreference>
+
+        <CheckBoxPreference
+            android:key="vibrate"
+            android:summary="Vibre lors d&apos;une notification"
+            android:title="Vibreur" >
+        </CheckBoxPreference>
+    </PreferenceCategory>
+
+</PreferenceScreen>
