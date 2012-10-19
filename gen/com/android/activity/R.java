@@ -23,7 +23,8 @@ public final class R {
         public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
-        public static final int menu_settings=0x7f0a0002;
+        public static final int map=0x7f0a0002;
+        public static final int menu_settings=0x7f0a0003;
         public static final int tableLayout1=0x7f0a0000;
         public static final int tableRow1=0x7f0a0001;
     }
