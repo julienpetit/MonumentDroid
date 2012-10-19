@@ -13,6 +13,13 @@ public class MyItimizedOverlay extends ItemizedOverlay<OverlayItem>
 {
 
 	private ArrayList<OverlayItem> arrayListOverlayItem = new ArrayList<OverlayItem>();
+	private Context context;
+
+	public MyItimizedOverlay(Drawable defaultMarker, Context pContext)
+	{
+		super(boundCenterBottom(defaultMarker));
+		this.context = pContext;
+	}
 
 	public MyItimizedOverlay(Drawable defaultMarker)
 	{
@@ -35,6 +42,17 @@ public class MyItimizedOverlay extends ItemizedOverlay<OverlayItem>
 	{
 		arrayListOverlayItem.add(overlay);
 		populate();
+	}
+
+	@Override
+	protected boolean onTap(int index)
+	{
+		OverlayItem item = arrayListOverlayItem.get(index);
+		AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+		dialog.setTitle(item.getTitle());
+		dialog.setMessage(item.getSnippet());
+		dialog.show();
+		return true;
 	}
 
 }

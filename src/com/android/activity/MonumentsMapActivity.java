@@ -66,7 +66,7 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 		mapView.setBuiltInZoomControls(true);
 		
 		Drawable drawable = this.getResources().getDrawable(R.drawable.ic_launcher);
-		MyItimizedOverlay itemizedoverlay = new MyItimizedOverlay(drawable);
+		MyItimizedOverlay itemizedoverlay = new MyItimizedOverlay(drawable,this);
 		
 		GeoPoint geoPoint = new GeoPoint(-17595983, -149487411);
 		OverlayItem overlayitem = new OverlayItem(geoPoint, "Hello from", "Tahiti");
