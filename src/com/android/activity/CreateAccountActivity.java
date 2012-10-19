@@ -36,7 +36,6 @@ public class CreateAccountActivity extends Activity {
     	Button buttonValidateForm = (Button) findViewById(R.createAccount.validate_account);
     	buttonValidateForm.setOnClickListener(new OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
 				// Récupération du logion et du mot de passe
 				TextView loginTextView = (TextView) findViewById(R.createAccount.input_createaccount_login);

@@ -70,7 +70,6 @@ public class LoginActivity extends Activity {
 
 		//Enfin on met un écouteur d'évènement sur notre listView
 		listViewUsers.setOnItemClickListener(new OnItemClickListener() {
-			@Override
 			@SuppressWarnings("unchecked")
 			public void onItemClick(AdapterView<?> a, View v, final int position, long id) {
 				//on récupère la HashMap contenant les infos de notre item (titre, description, img)

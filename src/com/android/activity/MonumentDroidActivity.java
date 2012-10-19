@@ -62,7 +62,6 @@ public class MonumentDroidActivity extends Activity implements OnClickListener{
 		Button buttonMap = (Button) findViewById(R.id.map);
 		buttonMap.setOnClickListener(new OnClickListener() {
 
-			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(getBaseContext(), MonumentsMapActivity.class));
 			}
@@ -114,7 +113,6 @@ public class MonumentDroidActivity extends Activity implements OnClickListener{
 	// =================================================================
 	// Events
 	// =================================================================
-	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		
