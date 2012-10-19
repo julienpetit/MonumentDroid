@@ -22,9 +22,8 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		setContentView(R.layout.mapmonuments);
 
+		setContentView(R.layout.mapmonuments);
 
 		// On récupère les coordonnées GPS
 		/// On récupère le gestionnaire de localisation

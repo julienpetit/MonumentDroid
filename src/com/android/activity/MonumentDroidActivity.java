@@ -30,7 +30,6 @@ public class MonumentDroidActivity extends Activity implements OnClickListener{
 			startActivity(new Intent(this, CreateAccountActivity.class));
 		else
 			initMain();
-
 	}
 
 	// =================================================================
@@ -59,7 +58,7 @@ public class MonumentDroidActivity extends Activity implements OnClickListener{
 		
 		
 		
-		Button buttonMap = (Button) findViewById(R.id.map);
+		Button buttonMap = (Button) findViewById(R.main.mapButton);
 		buttonMap.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {

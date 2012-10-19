@@ -11,18 +11,38 @@
         style="@style/titleTextView"
         android:text="@string/title_welcome"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1" >
 
-    <TextView
-        android:id="@+id/user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="fill_horizontal"
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:baselineAligned="true" >
 
-    <Button
-        android:id="@+id/map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="map" />
+            <Button
+                android:id="@+main/mapButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Voir les monuments" />
+
+            <Button
+                android:id="@+main/declarerButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Déclarer un Monument" />
+        </TableRow>
+
+    </TableLayout>
 
 </LinearLayout>

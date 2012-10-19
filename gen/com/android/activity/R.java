@@ -23,9 +23,9 @@ public final class R {
         public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
-        public static final int map=0x7f0a0001;
         public static final int menu_settings=0x7f0a0002;
-        public static final int user=0x7f0a0000;
+        public static final int tableLayout1=0x7f0a0000;
+        public static final int tableRow1=0x7f0a0001;
     }
     public static final class layout {
         public static final int createaccount=0x7f030000;
@@ -41,6 +41,8 @@ public final class R {
         public static final int loginUser=0x7f080000;
     }
     public static final class main {
+        public static final int declarerButton=0x7f090002;
+        public static final int mapButton=0x7f090001;
         public static final int title_welcome=0x7f090000;
     }
     public static final class menu {
