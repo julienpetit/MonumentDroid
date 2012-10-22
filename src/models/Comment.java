@@ -31,7 +31,7 @@ public class Comment {
 	public static final int NUM_COL_MESSAGE = 4;
 
 	// Création de la table
-	public static final String CREATE_TABLE_USERS = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" 
+	public static final String CREATE_TABLE_COMMENT = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" 
 								+ COL_ID + " INTEGER PRIMARY KEY AUTO_INCREMENT, "
 								+ COL_IDUSER + " INTEGER, " 
 								+ COL_IDMONUMENT + " INTEGER, "

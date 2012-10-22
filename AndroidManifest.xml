@@ -43,7 +43,11 @@
             android:name=".CreateAccountActivity"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
-
+        <activity
+            android:name=".MonumentReportActivity"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        
         <uses-library android:name="com.google.android.maps" />
     </application>
 

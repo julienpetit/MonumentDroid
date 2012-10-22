@@ -4,6 +4,7 @@
     android:layout_height="fill_parent"
     android:layout_alignParentLeft="true"
     android:layout_alignParentTop="true"
+    android:background="@drawable/background"
     android:orientation="vertical" >
 
     <TextView
@@ -11,7 +12,7 @@
         style="@style/titleTextView"
         android:text="@string/title_welcome"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-    
+
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="fill_parent"
@@ -25,8 +26,8 @@
             android:layout_height="0dp"
             android:layout_gravity="fill_horizontal"
             android:layout_weight="1"
-            android:weightSum="2"
-            android:baselineAligned="true" >
+            android:baselineAligned="true"
+            android:weightSum="2" >
 
             <Button
                 android:id="@+main/mapButton"
@@ -42,7 +43,6 @@
                 android:layout_weight="1"
                 android:text="Déclarer un Monument" />
         </TableRow>
-
     </TableLayout>
 
 </LinearLayout>

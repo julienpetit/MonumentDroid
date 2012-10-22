@@ -9,7 +9,7 @@ import android.util.Log;
  
 public class Database extends SQLiteOpenHelper {
  
-	public static final int VERSION_BDD = 1;
+	public static final int VERSION_BDD = 2;
 	public static final String NAME_DATABASE = "monumentdroid.db";
 	
 
@@ -21,7 +21,11 @@ public class Database extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		//on créé la table à partir de la requête écrite dans la variable CREATE_BDD
+
+		
 		db.execSQL(User.CREATE_TABLE_USERS);
+		db.execSQL(Monument.CREATE_TABLE_MONUMENT);
+//		db.execSQL(Comment.CREATE_TABLE_COMMENT);
 		Log.d("sql", "onCreate");
 	}
  
@@ -31,6 +35,8 @@ public class Database extends SQLiteOpenHelper {
 		//comme ça lorsque je change la version les id repartent de 0
 
 		db.execSQL("DROP TABLE IF EXISTS " + User.TABLE_NAME + ";");
+		db.execSQL("DROP TABLE IF EXISTS " + Monument.TABLE_NAME + ";");
+		db.execSQL("DROP TABLE IF EXISTS " + Comment.TABLE_NAME + ";");
 		onCreate(db);
 	}
  

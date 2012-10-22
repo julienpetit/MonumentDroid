@@ -205,7 +205,10 @@ public class User {
 	{
 		Database database = new Database(context);
 		SQLiteDatabase db = database.getReadableDatabase();
-		return DatabaseUtils.queryNumEntries(db, TABLE_NAME);
+		
+		long nbUsers = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
+		db.close();
+		return nbUsers;
 	}
 
 	public String toString()

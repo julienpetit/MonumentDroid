@@ -24,7 +24,8 @@ public final class R {
     }
     public static final class id {
         public static final int map=0x7f0a0002;
-        public static final int menu_settings=0x7f0a0003;
+        public static final int menu_settings=0x7f0a0004;
+        public static final int surface_camera=0x7f0a0003;
         public static final int tableLayout1=0x7f0a0000;
         public static final int tableRow1=0x7f0a0001;
     }
@@ -34,7 +35,9 @@ public final class R {
         public static final int login=0x7f030002;
         public static final int main=0x7f030003;
         public static final int mapmonuments=0x7f030004;
-        public static final int preferences=0x7f030005;
+        public static final int monumentreport=0x7f030005;
+        public static final int preferences=0x7f030006;
+        public static final int surface_camera=0x7f030007;
     }
     public static final class login {
         public static final int dateInscription=0x7f080001;
@@ -52,11 +55,20 @@ public final class R {
         public static final int menu_monument_droid=0x7f060002;
     }
     public static final class menu_login {
-        public static final int create_account=0x7f0b0000;
+        public static final int create_account=0x7f0c0000;
     }
     public static final class menu_monument_droid {
-        public static final int goToPreferences=0x7f0c0000;
-        public static final int switch_account=0x7f0c0001;
+        public static final int goToPreferences=0x7f0d0000;
+        public static final int switch_account=0x7f0d0001;
+    }
+    public static final class monumentreport {
+        public static final int ButtonCancel=0x7f0b0005;
+        public static final int ButtonShare=0x7f0b0006;
+        public static final int EditTextDescription=0x7f0b0004;
+        public static final int EditTextName=0x7f0b0000;
+        public static final int ImageButton=0x7f0b0003;
+        public static final int libelle_location=0x7f0b0001;
+        public static final int location=0x7f0b0002;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
@@ -72,6 +84,7 @@ public final class R {
         public static final int title_activity_main=0x7f040002;
         public static final int title_createaccount=0x7f040008;
         public static final int title_login=0x7f04000c;
+        public static final int title_report=0x7f04000e;
         public static final int title_welcome=0x7f04000a;
     }
     public static final class style {

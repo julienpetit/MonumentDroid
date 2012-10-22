@@ -1,18 +1,17 @@
 package models;
 
-import java.security.Provider;
+import java.util.ArrayList;
 import java.util.Date;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.text.format.Time;
-import android.util.Log;
-
 import exceptions.AttributNoValidException;
+import exceptions.CommentNotFoundException;
 import exceptions.MonumentNotFoundException;
-import exceptions.UserNotFoundException;
 
 public class Monument {
 
@@ -40,7 +39,7 @@ public class Monument {
 	public static final int NUM_COL_IDUSER 		= 8;
 
 	// Création de la table
-	public static final String CREATE_TABLE_USERS = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+	public static final String CREATE_TABLE_MONUMENT = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ COL_LIBELLE 		+ " TEXT NOT NULL, " 
 			+ COL_DESCRIPTION 	+ " TEXT, " 
 			+ COL_LATITUDE 		+ " REAL, " 
@@ -57,20 +56,26 @@ public class Monument {
 	private Location location;
 	private Date date;
 	private int idUser;
-
+	private ArrayList<Comment> listeDeCommentaires;
+	private ArrayList<Photo> listeDePhotos;
+ 
 	private Context context;
 	private Database database;
 
 	public Monument(Context context)
 	{
-		this.context = context;
-		this.database = new Database(context);
+		this.context 				= context;
+		this.database 				= new Database(context);
+		this.listeDeCommentaires 	= new ArrayList<Comment>();
+		this.listeDePhotos 			= new ArrayList<Photo>();
 	}
 
-	public Monument(Context context, int idMonument) throws MonumentNotFoundException
+	public Monument(Context context, int idMonument) throws MonumentNotFoundException, CommentNotFoundException
 	{
 		this(context);
 		this.fetchMonumentById(idUser);
+		this.listeDeCommentaires = Comment.getAllCommentsOfMonument(context, idMonument);
+		this.listeDePhotos		= new ArrayList<Photo>();
 	}
 
 
@@ -81,6 +86,7 @@ public class Monument {
 
 	public void save() throws AttributNoValidException
 	{
+		SQLiteDatabase db = database.getWritableDatabase();
 		ContentValues values = new ContentValues();
 
 		if(!this.exist())
@@ -98,7 +104,7 @@ public class Monument {
 			values.put(COL_DATE, (long) new Date().getTime());
 			values.put(COL_IDUSER, this.idUser);
 
-			this.id = (int) database.getWritableDatabase().insert(TABLE_NAME, null, values);
+			this.id = (int) db.insert(TABLE_NAME, null, values);
 		}
 		else
 		{
@@ -110,6 +116,8 @@ public class Monument {
 //
 //			database.getWritableDatabase().update(TABLE_NAME, values, COL_ID + "=" + this.id, null);
 		}
+		db.close();
+		
 	}
 	
 	private Monument cursorToMonument(Cursor c){
