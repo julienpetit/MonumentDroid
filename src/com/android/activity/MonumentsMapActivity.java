@@ -2,6 +2,8 @@ package com.android.activity;
 
 import java.util.List;
 
+import map.MyItimizedOverlay;
+
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;

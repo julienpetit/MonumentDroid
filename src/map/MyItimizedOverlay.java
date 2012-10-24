@@ -1,4 +1,4 @@
-package com.android.activity;
+package map;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,6 @@ public class MyItimizedOverlay extends ItemizedOverlay<OverlayItem> {
 	public MyItimizedOverlay(Drawable defaultMarker, MapView mapView) {
 		super(boundCenterBottom(defaultMarker));
 		this.context = mapView.getContext();
-
 	}
 
 	@Override
