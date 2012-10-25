@@ -9,12 +9,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.text.format.Time;
+import android.util.Log;
 import exceptions.AttributNoValidException;
 import exceptions.CommentNotFoundException;
 import exceptions.MonumentNotFoundException;
+import exceptions.UserNotFoundException;
 
 public class Monument {
 
+	@SuppressWarnings("unused")
+	private final String LOG_ID = this.getClass().getName();
+	
 	// Nom de la base de données
 	public static final String TABLE_NAME = "monuments";
 
@@ -70,17 +75,42 @@ public class Monument {
 		this.listeDePhotos 			= new ArrayList<Photo>();
 	}
 
-	public Monument(Context context, int idMonument) throws MonumentNotFoundException, CommentNotFoundException
+	public Monument(Context context, int _idMonument) throws MonumentNotFoundException, CommentNotFoundException
 	{
 		this(context);
-		this.fetchMonumentById(idUser);
-		this.listeDeCommentaires = Comment.getAllCommentsOfMonument(context, idMonument);
+		this.fetchMonumentById(_idMonument);
+		this.listeDeCommentaires = Comment.getAllCommentsOfMonument(context, _idMonument);
 		this.listeDePhotos		= new ArrayList<Photo>();
 	}
 
 
-	private void fetchMonumentById(int idMonument) {
+	private void fetchMonumentById(int _idMonument) throws MonumentNotFoundException {
+		SQLiteDatabase db = this.database.getReadableDatabase();
+		Cursor c = db.query(TABLE_NAME, new String[]{
+				COL_ID,
+				COL_LIBELLE,
+				COL_DESCRIPTION,
+				COL_LATITUDE,
+				COL_LONGITUDE,
+				COL_ACCURACY,
+				COL_ALTITUDE,
+				COL_DATE,
+				COL_IDUSER}, COL_ID + "=" + _idMonument, null, null, null, null, null);
 
+		if(c.getCount() == 0)
+			throw new MonumentNotFoundException();
+
+		c.moveToFirst();
+		Monument monument = this.cursorToMonument(c);
+		c.close();	
+		db.close();
+	
+		this.id = monument.getId();
+		this.idUser = monument.getIdUser();
+		this.date = monument.getDate();
+		this.libelle = monument.getLibelle();
+		this.description = monument.getDescription();
+		this.location = monument.getLocation();
 	}
 
 
@@ -122,7 +152,6 @@ public class Monument {
 	
 	private Monument cursorToMonument(Cursor c){
 		//si aucun élément n'a été retourné dans la requête, on renvoie null
-		
 		
 		if (c.getCount() == 0)
 			return null;
@@ -172,12 +201,56 @@ public class Monument {
 		return monument;
 	}
 
+	public static ArrayList<Monument> getAllMonuments(Context context, long distance, Location loc) throws MonumentNotFoundException, CommentNotFoundException
+	{
+		ArrayList<Monument> listOfMonuments = new ArrayList<Monument>();
+
+		Database database = new Database(context);
+		SQLiteDatabase db = database.getReadableDatabase();
+
+		Cursor c = db.query(TABLE_NAME, new String[]{COL_ID}, null, null, null, null, null);
+
+		c.moveToFirst();
+
+		// Tant qu'on lit des lignes
+		while(!c.isAfterLast()){
+			if(!c.isNull(NUM_COL_ID))
+			{
+				Log.d("Monument Model", "noMonument : " + c.getInt(NUM_COL_ID));
+				Monument monument = new Monument(context, c.getInt(NUM_COL_ID));
+				
+//				listOfMonuments.add(monument);	
+				if(loc != null && distance > 0)
+				{
+					if(loc.distanceTo(monument.getLocation()) <= distance)
+						listOfMonuments.add(monument);
+				}
+				else 
+				{
+					listOfMonuments.add(monument);	
+				}
+				
+			}
+				
+			c.moveToNext();
+		};
+		c.close();
+		db.close();
+
+		return listOfMonuments;
+	}
+	
+	
+
+	
 	private boolean attributesValid() {
 		if(this.idUser == 0 || this.libelle == null || this.location == null)
 			return false;
 		else
 			return true;
 	}
+	
+	
 
 	private void setAttributeToDefault() {
 		this.libelle = "pas de libellé";

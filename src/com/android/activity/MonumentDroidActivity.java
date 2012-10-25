@@ -74,6 +74,15 @@ public class MonumentDroidActivity extends Activity implements OnClickListener{
 				startActivity(new Intent(getBaseContext(), MonumentReportActivity.class));
 			}
 		});
+		
+		Button buttonList = (Button) findViewById(R.main.listButton);
+		buttonList.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				startActivity(new Intent(getBaseContext(), MonumentListActivity.class));
+				
+			}
+		});
 	}
 
 

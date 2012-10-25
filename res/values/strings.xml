@@ -14,5 +14,7 @@
     <string name="libelle_switch_account">Changer de compte</string>
     <string name="title_login">Connexion</string>
     <string name="libelle_create_account">Créer un compte</string>
-
+    <string name="title_list">Les monuments</string>
+    <string name="title_report">Partager un monument</string>
+    
 </resources>

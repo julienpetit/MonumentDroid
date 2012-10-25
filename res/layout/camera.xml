@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="fill_parent">
+    <SurfaceView android:id="@+id/surface"
+        android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:layout_weight="1">
+    </SurfaceView>
+
+    <ImageButton
+        android:id="@+id/takepicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="128dp"
+        android:layout_y="10dp"
+        android:src="@android:drawable/ic_menu_camera" />
+
+</AbsoluteLayout>

@@ -43,6 +43,30 @@
                 android:layout_weight="1"
                 android:text="Déclarer un Monument" />
         </TableRow>
+        
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="fill_horizontal"
+            android:layout_weight="1"
+            android:baselineAligned="true"
+            android:weightSum="2" >
+
+            <Button
+                android:id="@+main/listButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Liste des monuments" />
+
+<!--             <Button -->
+<!--                 android:id="@+main/declarerButton" -->
+<!--                 android:layout_width="fill_parent" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:layout_weight="1" -->
+<!--                 android:text="Déclarer un Monument" /> -->
+        </TableRow>
     </TableLayout>
 
 </LinearLayout>

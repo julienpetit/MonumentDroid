@@ -4,6 +4,7 @@ import models.Monument;
 import preferences.Prefs;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import exceptions.AttributNoValidException;
@@ -29,6 +31,7 @@ public class MonumentReportActivity extends Activity implements LocationListener
 	private EditText editTextDescription;
 	private Button buttonCancel;
 	private Button buttonShare;
+	private ImageButton buttonImage;
 	
 	private LocationManager locationManager;
 	private String provider;
@@ -48,9 +51,11 @@ public class MonumentReportActivity extends Activity implements LocationListener
 		this.editTextName  		 = (EditText) findViewById(R.monumentreport.EditTextName);
 		this.buttonCancel		 = (Button) findViewById(R.monumentreport.ButtonCancel);
 		this.buttonShare		 = (Button) findViewById(R.monumentreport.ButtonShare);
+		this.buttonImage		 = (ImageButton) findViewById(R.monumentreport.ImageButton);
 		
 		this.buttonShare.setOnClickListener(this);
 		this.buttonCancel.setOnClickListener(this);
+		this.buttonImage.setOnClickListener(this);
 	}
 
 
@@ -106,6 +111,10 @@ public class MonumentReportActivity extends Activity implements LocationListener
 			case R.monumentreport.ButtonCancel:
 				this.cancelAction();
 				break;
+			case R.monumentreport.ImageButton:
+//				startActivity(new Intent(getBaseContext(), TakePictureActivity.class));
+				break;
+				
 			}
 
 	}

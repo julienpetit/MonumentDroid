@@ -9,5 +9,4 @@
         <item name="android:gravity">center_horizontal</item>
         <item name="android:padding">8dip</item>
     </style>
-    <string name="title_report">Partager un monument</string>
 </resources>

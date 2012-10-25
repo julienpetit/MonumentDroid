@@ -25,7 +25,8 @@ public class Database extends SQLiteOpenHelper {
 		
 		db.execSQL(User.CREATE_TABLE_USERS);
 		db.execSQL(Monument.CREATE_TABLE_MONUMENT);
-//		db.execSQL(Comment.CREATE_TABLE_COMMENT);
+		Log.d("sql", Comment.CREATE_TABLE_COMMENT);
+		db.execSQL(Comment.CREATE_TABLE_COMMENT);
 		Log.d("sql", "onCreate");
 	}
  

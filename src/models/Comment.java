@@ -32,11 +32,11 @@ public class Comment {
 
 	// Création de la table
 	public static final String CREATE_TABLE_COMMENT = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" 
-								+ COL_ID + " INTEGER PRIMARY KEY AUTO_INCREMENT, "
-								+ COL_IDUSER + " INTEGER, " 
-								+ COL_IDMONUMENT + " INTEGER, "
+								+ COL_ID + " INTEGER AUTO_INCREMENT PRIMARY KEY , "
+								+ COL_IDUSER + " INTEGER NOT NULL, " 
+								+ COL_IDMONUMENT + " INTEGER NOT NULL, "
 								+ COL_DATE + " long,"
-								+ COL_MESSAGE + " TEXT NOT NULL);";
+								+ COL_MESSAGE + " TEXT);";
 
 	// Attributs
 	private int id = 0;
