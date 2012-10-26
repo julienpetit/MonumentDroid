@@ -3,6 +3,7 @@ package com.android.activity;
 
 import java.util.ArrayList;
 
+import models.Comment;
 import models.Monument;
 import adapters.AdapterListMonuments;
 import android.app.Activity;
@@ -46,7 +47,7 @@ public class MonumentListActivity extends Activity {
 			e.printStackTrace();
 		}
 		
-		// On place les parcours dans la listView
+		// On place les commentaires dans la listView
 		final AdapterListMonuments adapter = new AdapterListMonuments(getBaseContext(), listDeMonuments);
 		list.setAdapter(adapter);
 
