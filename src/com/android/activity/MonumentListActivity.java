@@ -47,7 +47,7 @@ public class MonumentListActivity extends Activity {
 			e.printStackTrace();
 		}
 		
-		// On place les commentaires dans la listView
+		// On place les monuments dans la listView
 		final AdapterListMonuments adapter = new AdapterListMonuments(getBaseContext(), listDeMonuments);
 		list.setAdapter(adapter);
 

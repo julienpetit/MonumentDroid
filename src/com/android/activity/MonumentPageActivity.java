@@ -125,7 +125,7 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 		distanceTextView 			= (TextView) findViewById(R.monumentpage.distanceTextView);
 		libelleTextView 			= (TextView) findViewById(R.monumentpage.libelleTextView);
 		descriptionTextView 		= (TextView) findViewById(R.monumentpage.descriptionTextView);
-//		commentairesListView;
+		commentairesListView        = (ListView) findViewById(R.monumentpage.listView);
 		
 //		ajouterCommentaireButton;
 		
