@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+menu_monument_page/addComment"
+        android:icon="@android:drawable/ic_menu_send"
+        android:title="@string/libelle_ajout_message_menu">
+    </item>
+    <item
+        android:id="@+menu_monument_page/viewOnMap"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:title="@string/libelle_voir_sur_la_carte_menu">
+    </item>
+</menu>

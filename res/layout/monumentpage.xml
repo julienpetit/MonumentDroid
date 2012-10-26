@@ -14,18 +14,12 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
+        android:layout_height="fill_parent"
+        android:background="@drawable/background" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dip"
-                android:layout_marginTop="5dip"
                 android:orientation="vertical"
                 android:padding="10dip" >
 
@@ -34,39 +28,54 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
+                    android:layout_marginBottom="35dip"
                     android:text="en attente de la position..."
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingLeft="10dip"
+                    android:text="Description"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textStyle="bold" />
+                
+                <TextView
                     android:id="@+monumentpage/descriptionTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dip"
+                    android:layout_marginBottom="35dip"
                     android:layout_marginTop="5dip"
                     android:text="Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standar"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingLeft="10dip"
+                    android:text="Commentaires"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textStyle="bold" />
+
+                <ListView
+                    android:id="@+monumentpage/listView"
+                    android:layout_width="fill_parent"
+                    android:scrollbars="none"
+                    android:layout_height="match_parent" >
+                </ListView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+monumentpage/commentairesLinearLayout" >
+                </LinearLayout>
+
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dip"
-                android:text="Commentaires"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <ListView
-                android:id="@+monumentpage/listView"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
-            </ListView>
-
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

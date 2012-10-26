@@ -71,7 +71,7 @@ public class Comment {
 		SQLiteDatabase db = database.getWritableDatabase();
 		ContentValues values = new ContentValues();
 
-		if(id == 0 || user == null || idMonument == 0 || message == null)
+		if(user == null || idMonument == 0 || message == null)
 			throw new AttributNoValidException();
 		
 		values.put(COL_IDUSER, this.user.getId());
