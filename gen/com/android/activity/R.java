@@ -35,7 +35,7 @@ public final class R {
     public static final class item_parcours {
         public static final int layout=0x7f0a0000;
     }
-    public static final class itemlistecommantaires {
+    public static final class itemlistecommentaires {
         public static final int commentaire=0x7f090001;
         public static final int date=0x7f090002;
         public static final int nomUser=0x7f090000;

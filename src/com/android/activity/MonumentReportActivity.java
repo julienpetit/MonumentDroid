@@ -22,7 +22,7 @@ import exceptions.AttributNoValidException;
 public class MonumentReportActivity extends Activity implements LocationListener, OnClickListener{
 
 	private final String LOG_ID = this.getClass().getName();
-	private Location location;
+
 
 	private long update_time = 1000;
 	private float update_distance = 5000;
@@ -33,6 +33,7 @@ public class MonumentReportActivity extends Activity implements LocationListener
 	private Button buttonShare;
 	private ImageButton buttonImage;
 	
+	private Location location;
 	private LocationManager locationManager;
 	private String provider;
 

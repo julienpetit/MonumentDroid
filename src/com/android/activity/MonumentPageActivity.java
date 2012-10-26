@@ -1,26 +1,41 @@
 package com.android.activity;
 
+import java.text.DecimalFormat;
+
 import models.Monument;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import exceptions.CommentNotFoundException;
 import exceptions.MonumentNotFoundException;
+import exceptions.UserNotFoundException;
 
-public class MonumentPageActivity extends Activity {
+public class MonumentPageActivity extends Activity implements LocationListener{
 
 	private Monument monument;
 
+	private long update_time = 1000;
+	private float update_distance = 5000;
+	
 	private TextView distanceTextView;
 	private TextView libelleTextView;
 	private TextView descriptionTextView;
 	private ListView commentairesListView;
-	
 	private Button ajouterCommentaireButton;
 	
+	public DecimalFormat format;
+	
+	private Location location;
+	private LocationManager locationManager;
+	private String provider;
 	/**
 	 * Called when the activity is first created. 
 	 * */
@@ -39,12 +54,33 @@ public class MonumentPageActivity extends Activity {
 			e.printStackTrace();
 		} catch (CommentNotFoundException e) {
 			e.printStackTrace();
+		} catch (UserNotFoundException e) {
+			e.printStackTrace();
 		}
 		
-		
+		this.initAtributs();
 		this.initViews();
+		this.initLocation();
 		this.populateViews();
+		
 
+	}
+	
+	public void initLocation()
+	{
+		// On récupère les coordonnées GPS
+		/// On récupère le gestionnaire de localisation
+		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		/// On définit les critère de choix du meilleur système de localisation
+		Criteria criteria = new Criteria();
+		criteria.setAccuracy(Criteria.ACCURACY_FINE);
+		criteria.setAltitudeRequired(true);
+		criteria.setBearingRequired(false);
+		criteria.setCostAllowed(true);
+		criteria.setPowerRequirement(Criteria.POWER_LOW);
+		provider = locationManager.getBestProvider(criteria, true);
+		/// On demande au gestionnaire de localisation de faire des mise-a-jour de la position.
+		locationManager.requestLocationUpdates(provider, update_time, update_distance, this);
 	}
 	
 	private void populateViews() {
@@ -52,6 +88,14 @@ public class MonumentPageActivity extends Activity {
 		this.descriptionTextView.setText(monument.getDescription());
 	}
 
+	private void initAtributs()
+	{
+		format = new DecimalFormat ( ) ; 
+		format.setMaximumFractionDigits ( 1 ) ; 
+		format.setMinimumFractionDigits ( 0 ) ; 
+		format.setDecimalSeparatorAlwaysShown ( true ) ; 
+	}
+	
 	private void initViews() {
 		distanceTextView 			= (TextView) findViewById(R.monumentpage.distanceTextView);
 		libelleTextView 			= (TextView) findViewById(R.monumentpage.libelleTextView);
@@ -68,5 +112,35 @@ public class MonumentPageActivity extends Activity {
 	private void returnToHome()
 	{
 		startActivity(new Intent(this, MonumentDroidActivity.class));
+	}
+
+	
+	/**
+	 * ----------------------------------------------
+	 * Location listener
+	 * ----------------------------------------------
+	 */
+	public void onLocationChanged(Location loc) {
+		this.location = loc;
+		float distance = loc.distanceTo(this.monument.getLocation());
+		this.distanceTextView.setText("à " + format.format(distance) + " m");
+		
+		if(this.location.hasAccuracy() && this.location.getAccuracy() < 10)
+			this.locationManager.removeUpdates(this);
+	}
+
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+		
 	}
 }

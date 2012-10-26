@@ -75,12 +75,12 @@ public class Monument {
 		this.listeDePhotos 			= new ArrayList<Photo>();
 	}
 
-	public Monument(Context context, int _idMonument) throws MonumentNotFoundException, CommentNotFoundException
+	public Monument(Context context, int _idMonument) throws MonumentNotFoundException, CommentNotFoundException, UserNotFoundException
 	{
 		this(context);
 		this.fetchMonumentById(_idMonument);
-		this.listeDeCommentaires = Comment.getAllCommentsOfMonument(context, _idMonument);
-		this.listeDePhotos		= new ArrayList<Photo>();
+		this.listeDeCommentaires 	= Comment.getAllCommentsOfMonument(context, _idMonument);
+		this.listeDePhotos			= new ArrayList<Photo>();
 	}
 
 
@@ -201,7 +201,7 @@ public class Monument {
 		return monument;
 	}
 
-	public static ArrayList<Monument> getAllMonuments(Context context, long distance, Location loc) throws MonumentNotFoundException, CommentNotFoundException
+	public static ArrayList<Monument> getAllMonuments(Context context, long distance, Location loc) throws MonumentNotFoundException, CommentNotFoundException, UserNotFoundException
 	{
 		ArrayList<Monument> listOfMonuments = new ArrayList<Monument>();
 
@@ -219,7 +219,6 @@ public class Monument {
 				Log.d("Monument Model", "noMonument : " + c.getInt(NUM_COL_ID));
 				Monument monument = new Monument(context, c.getInt(NUM_COL_ID));
 				
-//				listOfMonuments.add(monument);	
 				if(loc != null && distance > 0)
 				{
 					if(loc.distanceTo(monument.getLocation()) <= distance)

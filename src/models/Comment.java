@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import exceptions.AttributNoValidException;
 import exceptions.CommentNotFoundException;
+import exceptions.UserNotFoundException;
 
 
 public class Comment {
@@ -40,7 +41,7 @@ public class Comment {
 
 	// Attributs
 	private int id = 0;
-	private int idUser = 0;
+	private User user;
 	private int idMonument = 0;
 	private Date date;
 	private String message;
@@ -54,7 +55,7 @@ public class Comment {
 		this.database = new Database(context);
 	}
 
-	public Comment(Context context, int idComment) throws CommentNotFoundException
+	public Comment(Context context, int idComment) throws CommentNotFoundException, UserNotFoundException
 	{
 		this(context);
 		this.fetchCommentById(idComment);
@@ -70,28 +71,20 @@ public class Comment {
 		SQLiteDatabase db = database.getWritableDatabase();
 		ContentValues values = new ContentValues();
 
+		if(id == 0 || user == null || idMonument == 0 || message == null)
+			throw new AttributNoValidException();
+		
+		values.put(COL_IDUSER, this.user.getId());
+		values.put(COL_IDMONUMENT, this.idMonument);
+		values.put(COL_DATE, (long) new Date().getTime());
+		values.put(COL_MESSAGE, this.message);
+		
 		if(!this.exist())
-		{
-			if(id == 0 || idUser == 0 || idMonument == 0 || message == null)
-				throw new AttributNoValidException();
-			
-			values.put(COL_IDUSER, this.idUser);
-			values.put(COL_IDMONUMENT, this.idMonument);
-			values.put(COL_DATE, (long) new Date().getTime());
-			values.put(COL_MESSAGE, this.message);
-
+		{	
 			this.id = (int) db.insert(TABLE_NAME, null, values);
 		}
 		else
 		{
-			if(id == 0 || idUser == 0 || idMonument == 0 || message == null)
-				throw new AttributNoValidException();
-			
-			values.put(COL_IDUSER, this.idUser);
-			values.put(COL_IDMONUMENT, this.idMonument);
-			values.put(COL_DATE, (long) new Date().getTime());
-			values.put(COL_MESSAGE, this.message);
-
 			db.update(TABLE_NAME, values, COL_ID + "=" + this.id, null);
 		}
 		db.close();
@@ -112,8 +105,9 @@ public class Comment {
 	 * Récupère l'ensemble des informations d'un utilisateur
 	 * @param idComment
 	 * @throws CommentNotFoundException 
+	 * @throws UserNotFoundException 
 	 */
-	private void fetchCommentById(int idComment) throws CommentNotFoundException {
+	private void fetchCommentById(int idComment) throws CommentNotFoundException, UserNotFoundException {
 		SQLiteDatabase db = this.database.getReadableDatabase();
 		Cursor c = db.query(TABLE_NAME, new String[]{
 				COL_ID,
@@ -130,7 +124,7 @@ public class Comment {
 		c.moveToFirst();
 
 		this.setId(c.getInt(NUM_COL_ID));
-		this.setIdUser(c.getInt(NUM_COL_IDUSER));
+		this.setUser(new User(context, c.getInt(NUM_COL_IDUSER)));
 		this.setIdMonument(c.getInt(NUM_COL_IDMONUMENT));
 		this.setDate(new Date(c.getLong(NUM_COL_DATE)));
 		this.setMessage(c.getString(NUM_COL_MESSAGE));
@@ -139,14 +133,14 @@ public class Comment {
 		db.close();
 	}
 
-	private static Comment cursorToComment(Context context, Cursor c) throws CommentNotFoundException
+	private static Comment cursorToComment(Context context, Cursor c) throws CommentNotFoundException, UserNotFoundException
 	{
 		if(c.getCount() == 0)
 			throw new CommentNotFoundException();
 
 		Comment comment = new Comment(context);
 		comment.setId(c.getInt(NUM_COL_ID));
-		comment.setIdUser(c.getInt(NUM_COL_IDUSER));
+		comment.setUser(new User(context, c.getInt(NUM_COL_IDUSER)));
 		comment.setIdMonument(c.getInt(NUM_COL_IDMONUMENT));
 		comment.setDate(new Date(c.getLong(NUM_COL_DATE)));
 		comment.setMessage(c.getString(NUM_COL_MESSAGE));
@@ -154,7 +148,7 @@ public class Comment {
 		return comment;
 	}
 
-	public static ArrayList<Comment> getAllCommentsOfMonument(Context context, int idMonument) throws CommentNotFoundException
+	public static ArrayList<Comment> getAllCommentsOfMonument(Context context, int idMonument) throws CommentNotFoundException, UserNotFoundException
 	{
 		ArrayList<Comment> listOfComments = new ArrayList<Comment>();
 
@@ -197,7 +191,7 @@ public class Comment {
 	{
 		StringBuilder builder = new StringBuilder();
 		builder.append("id : " + this.id + "\n");
-		builder.append("id user : " + this.idUser + "\n");
+		builder.append("id user : " + this.user.getId() + "\n");
 		builder.append("id monument: " + this.idMonument + "\n");
 		builder.append("date : " + this.date+ "\n");
 		builder.append("message : " + this.message+ "\n");
@@ -213,12 +207,13 @@ public class Comment {
 		this.id = id;
 	}
 
-	public int getIdUser() {
-		return idUser;
+
+	public User getUser() {
+		return user;
 	}
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public int getIdMonument() {

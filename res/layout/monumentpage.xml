@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="à 2.9 km"
+                    android:text="en attente de la position..."
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
