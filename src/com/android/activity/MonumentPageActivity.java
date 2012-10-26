@@ -1,8 +1,11 @@
 package com.android.activity;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import models.Monument;
+import adapters.AdapterListCommentaires;
+import adapters.AdapterListMonuments;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -11,9 +14,13 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 import exceptions.CommentNotFoundException;
 import exceptions.MonumentNotFoundException;
 import exceptions.UserNotFoundException;
@@ -61,11 +68,29 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 		this.initAtributs();
 		this.initViews();
 		this.initLocation();
+		this.initListView();
 		this.populateViews();
+		
 		
 
 	}
 	
+	private void initListView() {
+	
+		
+		// On place les parcours dans la listView
+		final AdapterListCommentaires adapter = new AdapterListCommentaires(getBaseContext(), this.monument.getListeDeCommentaires());
+		commentairesListView.setAdapter(adapter);
+
+		// Click sur un monument
+		commentairesListView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+			}
+		});
+		
+	}
+
 	public void initLocation()
 	{
 		// On récupère les coordonnées GPS

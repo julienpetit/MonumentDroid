@@ -320,6 +320,22 @@ public class Monument {
 		this.idUser = idUser;
 	}
 
+	public ArrayList<Comment> getListeDeCommentaires() {
+		return listeDeCommentaires;
+	}
+
+	public void setListeDeCommentaires(ArrayList<Comment> listeDeCommentaires) {
+		this.listeDeCommentaires = listeDeCommentaires;
+	}
+
+	public ArrayList<Photo> getListeDePhotos() {
+		return listeDePhotos;
+	}
+
+	public void setListeDePhotos(ArrayList<Photo> listeDePhotos) {
+		this.listeDePhotos = listeDePhotos;
+	}
+
 
 
 
