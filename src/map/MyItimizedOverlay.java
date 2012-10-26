@@ -20,7 +20,7 @@ import com.google.android.maps.OverlayItem;
 // TODO Auto-generated constructor stub
 
 public class MyItimizedOverlay extends ItemizedOverlay<OverlayItem> {
-
+	
 	private ArrayList<OverlayItem> arrayListOverlayItem = new ArrayList<OverlayItem>();
 	private Context context;
 
