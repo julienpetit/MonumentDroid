@@ -21,6 +21,7 @@ import com.google.android.maps.OverlayItem;
 
 public class MyItimizedOverlay extends ItemizedOverlay<OverlayItem> {
 
+	
 	private ArrayList<OverlayItem> arrayListOverlayItem = new ArrayList<OverlayItem>();
 	private Context context;
 
