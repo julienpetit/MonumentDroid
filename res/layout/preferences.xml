@@ -1,35 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:iutbm="iutbm" >
 
-    <PreferenceCategory android:title="Utilisateur" >
+    <PreferenceCategory android:title="Géolocalisation" >
 
-        <EditTextPreference
-            android:key="login"
-            android:summary="Entrez votre nom d&apos;utilisateur"
-            android:title="Nom d&apos;utilisateur" >
-        </EditTextPreference>
+        <PreferenceScreen
+            android:key="preferencescreen_accuracy_gps"
+            android:summary="Paramétrage de la précision du GPS"
+            android:title="Précision" >
 
-        <EditTextPreference
-            android:key="password"
-            android:password="true"
-            android:summary="Entrez votre mot de passe"
-            android:title="Mot de passe" >
-        </EditTextPreference>
-    </PreferenceCategory>
-
-    <PreferenceCategory android:title="Notifications" >
-
-        <RingtonePreference
-            android:key="sonnerie"
-            android:summary="Choisissez la sonnerie pour les notifications"
-            android:title="Sonnerie de notification" >
-        </RingtonePreference>
-
-        <CheckBoxPreference
-            android:key="vibrate"
-            android:summary="Vibre lors d&apos;une notification"
-            android:title="Vibreur" >
-        </CheckBoxPreference>
+            <com.iutbm.monumentdroid.preferences.SeekBarPreference
+                android:defaultValue="16"
+                android:key="gps_accuracy"
+                android:max="50"
+                android:summary="Distance maximale autorisée pour l&apos;enregistrement d&apos;un monument. Si la précision de votre GPS est supérieur à la distance que vous programmez, vous ne pourres pas enregistrer de monuments. "
+                android:title="Précision du gps"
+                iutbm:min="2"
+                iutbm:units="m" />
+        </PreferenceScreen>
     </PreferenceCategory>
 
 </PreferenceScreen>
