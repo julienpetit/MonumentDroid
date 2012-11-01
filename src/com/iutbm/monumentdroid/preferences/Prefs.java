@@ -36,6 +36,17 @@ public class Prefs {
 		editor.commit();  // important!  Don't forget!
 
 	}
+	
+	
+	public void setPreference(String key, int value) {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(myContext);
+
+		SharedPreferences.Editor editor = prefs.edit();
+
+		editor.putInt(key, value);
+		editor.commit();  // important!  Don't forget!
+
+	}
 
 
 	public void clearAllPreferences() {

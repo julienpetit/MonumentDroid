@@ -36,7 +36,7 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		initActivity();
-
+		initPreferences();
 	}
 
 	private void initActivity()
@@ -45,6 +45,20 @@ public class LoginActivity extends Activity {
 		initListView();
 	}
 
+	private void initPreferences()
+	{
+		Prefs pref = new Prefs(this);
+		
+
+		String premierLancement = pref.getPreference("premierLancement");
+		if(premierLancement.length() == 0)
+		{
+			pref.setPreference("gps_accuracy" , 20); 
+			Log.d(LOG_ID, "premier lancement : " + premierLancement);
+			pref.setPreference("premierLancement", "fait");
+		}
+		Log.d(LOG_ID, "Preference premier lancement : " + premierLancement);
+	}
 
 	private void initListView()
 	{
