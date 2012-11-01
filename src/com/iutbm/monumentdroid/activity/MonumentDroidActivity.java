@@ -97,7 +97,10 @@ public class MonumentDroidActivity extends Activity implements OnClickListener{
 		buttonQuit.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				finish();
+				Intent setIntent = new Intent(Intent.ACTION_MAIN);
+				setIntent.addCategory(Intent.CATEGORY_HOME);
+				setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(setIntent); 
 			}
 
 		});
