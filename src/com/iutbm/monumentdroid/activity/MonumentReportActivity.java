@@ -84,7 +84,11 @@ public class MonumentReportActivity extends Activity implements LocationListener
 		criteria.setPowerRequirement(Criteria.POWER_LOW);
 		provider = locationManager.getBestProvider(criteria, true);
 		/// On demande au gestionnaire de localisation de faire des mise-a-jour de la position.
-		locationManager.requestLocationUpdates(provider, update_time, update_distance, this);
+		
+		if(provider != null)
+			locationManager.requestLocationUpdates(provider, update_time, update_distance, this);
+		else
+			Toast.makeText(getApplicationContext(), "Vous devez activer votre GPS.", Toast.LENGTH_SHORT).show();
 	}
 
 

@@ -63,6 +63,7 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 	private LocationManager locationManager;
 	private String provider;
 	private Prefs preferences;
+	
 	/**
 	 * Called when the activity is first created. 
 	 * */
@@ -74,6 +75,7 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 		Bundle objetbunble  = this.getIntent().getExtras(); 
 
 		int idMonument = objetbunble.getInt("idMonument");
+		
 		try {
 			this.monument = new Monument(this, idMonument);
 		} catch (MonumentNotFoundException e) {
@@ -107,7 +109,8 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 		criteria.setPowerRequirement(Criteria.POWER_LOW);
 		provider = locationManager.getBestProvider(criteria, true);
 		/// On demande au gestionnaire de localisation de faire des mise-a-jour de la position.
-		locationManager.requestLocationUpdates(provider, update_time, update_distance, this);
+		if(provider != null)
+			locationManager.requestLocationUpdates(provider, update_time, update_distance, this);
 	}
 
 	private void populateViews() {
@@ -124,7 +127,7 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 		format.setMaximumFractionDigits ( 1 ) ; 
 		format.setMinimumFractionDigits ( 0 ) ; 
 		format.setDecimalSeparatorAlwaysShown ( true ) ; 
-		formatDate = new SimpleDateFormat("dd/MM/yyyy");
+		formatDate = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	}
 
 	private void initViews() {
@@ -134,7 +137,6 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 		commentairesLinearLayout   	= (LinearLayout) findViewById(R.monumentpage.commentairesLinearLayout);
 		adresseTextView 			= (TextView) findViewById(R.monumentpage.adresseTextView);
 		//		ajouterCommentaireButton;
-
 	}
 
 	/**
@@ -323,6 +325,12 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 			});
 
 			alert.show();
+			return true;
+			
+		case R.menu_monument_page.viewOnMap:
+			Intent intent = new Intent(getApplicationContext(), MonumentsMapActivity.class);
+			intent.putExtra("idMonument", this.monument.getId());
+			startActivity(intent);
 			return true;
 
 		}

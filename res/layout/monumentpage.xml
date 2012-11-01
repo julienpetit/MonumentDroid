@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    
     <TextView
         android:id="@+monumentpage/libelleTextView"
         style="@style/titleTextView"
@@ -13,91 +12,101 @@
         android:text="@string/title_list"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <View
+        android:id="@+id/view1"
+        style="@style/traitTitle" />
+
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@drawable/background" >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dip" >
+
+            <!-- distance -->
+
+            <TextView
+                android:id="@+monumentpage/distanceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="35dip"
+                android:text="En attente..." />
+            <!-- /distance -->
+
+
+            <!-- description -->
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="10dip"
+                android:text="Description"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+monumentpage/descriptionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="35dip"
+                android:layout_marginTop="5dip"
+                android:text="Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standar" />
+            <!-- /description -->
+
+
+            <!-- adresse -->
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="10dip"
+                android:text="Adresse"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+monumentpage/adresseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="35dip"
+                android:layout_marginTop="5dip"
+                android:text="En attente..." />
+
+            <!-- /adresse -->
+
+
+            <!-- commentaires -->
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="10dip"
+                android:text="Commentaires"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+            <!-- /commentaires -->
+
             <LinearLayout
+                android:id="@+monumentpage/commentairesLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="10dip" >
-
-				<!-- distance -->
-                <TextView
-                    android:id="@+monumentpage/distanceTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginBottom="35dip"
-                    android:text="En attente..." />
-				<!-- /distance -->
-                
-				<!-- description -->
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:paddingLeft="10dip"
-                    android:text="Description"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textStyle="bold" />
-                
-                <TextView
-                    android:id="@+monumentpage/descriptionTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="35dip"
-                    android:layout_marginTop="5dip"
-                    android:text="Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standar" />
-				<!-- /description -->
-                
-                
-				<!-- adresse -->
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:paddingLeft="10dip"
-                    android:text="Adresse"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textStyle="bold" />
-                
-				<TextView
-				    android:id="@+monumentpage/adresseTextView"
-				    android:layout_width="wrap_content"
-				    android:layout_height="wrap_content"
-				    android:layout_gravity="center_horizontal"
-				    android:layout_marginBottom="35dip"
-				    android:layout_marginTop="5dip"
-				    android:text="En attente..." />
-
-                <!-- /adresse -->
-                
-				<!-- commentaires -->
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:paddingLeft="10dip"
-                    android:text="Commentaires"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textStyle="bold" />
-				<!-- /commentaires -->
-				
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+monumentpage/commentairesLinearLayout" >
-                </LinearLayout>
-				<!-- adresse -->
+                android:orientation="vertical" >
             </LinearLayout>
+            <!-- adresse -->
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

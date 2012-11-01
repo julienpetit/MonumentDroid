@@ -20,4 +20,21 @@
         <item name="android:background">@null</item>
     </style>
 
+    <style name="traitTitle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">3dip</item>
+        <item name="android:background">#44A3AA</item>
+    </style>
+    
+    <style name="traitListItem">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1dip</item>
+        <item name="android:background">#44A3AA</item>
+    </style>
+    
+    <style name="traitSousTitre">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">2dip</item>
+        <item name="android:background">#DDD</item>
+    </style>
 </resources>

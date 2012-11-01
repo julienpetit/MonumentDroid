@@ -17,8 +17,10 @@ package com.iutbm.monumentdroid.map;
 
 import java.util.List;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +33,7 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+import com.iutbm.monumentdroid.activity.MonumentPageActivity;
 import com.iutbm.monumentdroid.activity.R;
 
 /**
@@ -98,6 +101,11 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 	 * @return true if you handled the tap, otherwise false.
 	 */
 	protected boolean onBalloonTap(int index, Item item) {
+		MyOverlayItem it = (MyOverlayItem) item;
+		Log.d("OverLay Item", "id Monument : " + it.getIdMonument());
+		Intent intent = new Intent(mapView.getContext(), MonumentPageActivity.class);
+		intent.putExtra("idMonument", it.getIdMonument());
+		mapView.getContext().startActivity(intent);
 		return false;
 	}
 	
@@ -238,10 +246,13 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 							d.invalidateSelf();
 						}
 					}
-					if (Math.abs(startX - event.getX()) < 40 && 
-							Math.abs(startY - event.getY()) < 40 ) {
+					if (Math.abs(startX - event.getX()) < 40 && Math.abs(startY - event.getY()) < 40 ) {
 						// call overridden method
 						onBalloonTap(currentFocusedIndex, currentFocusedItem);
+						
+							
+						
+						Log.d("Baloon Itemized Overlay", "On tap tag : " + v.getId());
 					}
 					return true;
 				} else {

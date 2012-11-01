@@ -10,6 +10,10 @@
         android:text="@string/title_login"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <View
+        android:id="@+id/view1"
+        style="@style/traitTitle" />
+
     <ListView
         android:id="@+login/listViewUsers"
         android:layout_width="fill_parent"

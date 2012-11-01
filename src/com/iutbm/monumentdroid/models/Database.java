@@ -23,6 +23,10 @@ public class Database extends SQLiteOpenHelper {
 
 		
 		db.execSQL(User.CREATE_TABLE_USERS);
+		
+		// Ajout des utilisateurs par défaut
+		db.execSQL("INSERT INTO " + User.TABLE_NAME + "");
+		
 		db.execSQL(Monument.CREATE_TABLE_MONUMENT);
 		db.execSQL(Comment.CREATE_TABLE_COMMENT);
 		Log.d("sql", "onCreate");

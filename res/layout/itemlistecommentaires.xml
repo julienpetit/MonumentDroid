@@ -11,20 +11,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Julien petit"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+itemlistecommentaires/commentaire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trés beau monument. " 
-        android:textAppearance="?android:attr/textAppearanceSmall"/>
+        android:text="Trés beau monument. "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+itemlistecommentaires/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="23/10/2012 à 11h34"
-         />
+        android:text="23/10/2012 à 11h34" />
+
+    <View style="@style/traitListItem" />
 
 </LinearLayout>

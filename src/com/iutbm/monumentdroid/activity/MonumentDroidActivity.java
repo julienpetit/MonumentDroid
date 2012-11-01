@@ -1,10 +1,9 @@
 package com.iutbm.monumentdroid.activity;
-import com.iutbm.monumentdroid.exceptions.UserNotFoundException;
-import com.iutbm.monumentdroid.models.User;
-import com.iutbm.monumentdroid.preferences.Prefs;
-
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +14,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.iutbm.monumentdroid.exceptions.UserNotFoundException;
+import com.iutbm.monumentdroid.models.User;
+import com.iutbm.monumentdroid.preferences.Prefs;
 
 
 
@@ -42,47 +45,57 @@ public class MonumentDroidActivity extends Activity implements OnClickListener{
 
 		// Récupération de l'utilisateur connecté
 		Prefs prefs = new Prefs(getBaseContext());
-		
+
 		int idUser = Integer.valueOf(prefs.getPreference("idUser"));
-		
+
 		try {
 			User user = new User(this, idUser);
 			Log.d(LOG_ID, "user : " + user.toString());
-			
+
 			TextView titleWelcome = (TextView) findViewById(R.main.title_welcome);
 			titleWelcome.setText("Bienvenue, " + user.getLogin());
 		} catch (UserNotFoundException e) {
 			Toast.makeText(getApplicationContext(), "Utilisateur non trouvé", Toast.LENGTH_LONG).show();
 			startActivity(new Intent(this, LoginActivity.class));
 		}
-		
-		
-		
-		
+
+
 		Button buttonMap = (Button) findViewById(R.main.mapButton);
 		buttonMap.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				startActivity(new Intent(getBaseContext(), MonumentsMapActivity.class));
+				if(isOnline())
+					startActivity(new Intent(getBaseContext(), MonumentsMapActivity.class));
+				else 
+					Toast.makeText(getApplicationContext(), "Une connexion internet est requise pour accèder à la carte.", Toast.LENGTH_SHORT).show();
 			}
 		});
-		
-		
+
+
 		Button buttonReport = (Button) findViewById(R.main.declarerButton);
 		buttonReport.setOnClickListener(new OnClickListener() {
-			
+
 			public void onClick(View v) {
 				startActivity(new Intent(getBaseContext(), MonumentReportActivity.class));
 			}
 		});
-		
+
 		Button buttonList = (Button) findViewById(R.main.listButton);
 		buttonList.setOnClickListener(new OnClickListener() {
-			
+
 			public void onClick(View v) {
 				startActivity(new Intent(getBaseContext(), MonumentListActivity.class));
-				
+
 			}
+		});
+
+		Button buttonQuit = (Button) findViewById(R.main.quit);
+		buttonQuit.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				finish();
+			}
+
 		});
 	}
 
@@ -109,7 +122,7 @@ public class MonumentDroidActivity extends Activity implements OnClickListener{
 		case R.menu_monument_droid.goToPreferences:
 			startActivity(new Intent(this, PreferencesActivity.class));
 			return true;
-			
+
 		case R.menu_monument_droid.switch_account:
 			startActivity(new Intent(this, LoginActivity.class));
 			return true;
@@ -135,6 +148,15 @@ public class MonumentDroidActivity extends Activity implements OnClickListener{
 	// =================================================================
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		
+
 	}   
+
+	public boolean isOnline() {
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+			return true;
+		}
+		return false;
+	}
 }

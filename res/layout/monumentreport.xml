@@ -10,6 +10,10 @@
         android:text="@string/title_report"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <View
+        android:id="@+id/view1"
+        style="@style/traitTitle" />
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
@@ -40,9 +44,8 @@
                 android:id="@+monumentreport/location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Attente d'un signal"
+                android:text="Attente d&apos;un signal"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
-
         </LinearLayout>
 
         <ImageButton

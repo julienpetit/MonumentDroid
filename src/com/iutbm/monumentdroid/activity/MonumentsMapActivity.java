@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -22,22 +23,23 @@ import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.MyLocationOverlay;
-import com.google.android.maps.OverlayItem;
 import com.iutbm.monumentdroid.exceptions.CommentNotFoundException;
 import com.iutbm.monumentdroid.exceptions.MonumentNotFoundException;
 import com.iutbm.monumentdroid.exceptions.UserNotFoundException;
 import com.iutbm.monumentdroid.map.MyItemizedOverlay;
+import com.iutbm.monumentdroid.map.MyOverlayItem;
 import com.iutbm.monumentdroid.models.Monument;
 
 public class MonumentsMapActivity extends MapActivity implements LocationListener {
 
 	private MapController mapController;
 	private MapView mapView;
-	
+
 	private LocationManager locationManager;
 	private MyLocationOverlay myLocationOverlay;
 	private MyItemizedOverlay itemizedoverlay;
-	
+
+	private ProgressDialog progressDialog;
 	private boolean satellite;
 
 	/**
@@ -50,15 +52,36 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 		super.onCreate(bundle);
 		setContentView(R.layout.mapmonuments);
 
-		Bundle bundl = getIntent().getExtras();
-		
+		Bundle bundleIntent = getIntent().getExtras();
+
 		this.initAttributs();
 		this.initViews();
 		this.initMap();
 		this.initLocation();
 
+		
+		// Tentative de récupération de l'id d'un monument
+		// Si on en récupère un, on positionne la vue dessu.
+		try 
+		{
+			Monument monument = new Monument(getApplicationContext(), bundleIntent.getInt("idMonument"));
+			this.animateToMonument(monument);
+		} catch( Exception e)
+		{
+			e.printStackTrace();
+			myLocationOverlay.runOnFirstFix(new Runnable() {
+				public void run() {
+					mapView.getController().animateTo(
+							myLocationOverlay.getMyLocation());
+				}
+			});
+		}
+		
+		
+
+
 		try {
-			afficheListeDeMonuments(Monument.getAllMonuments(this, 0, null));
+			afficheListeDeMonuments(Monument.getAllMonuments(getApplicationContext(), 0, null));
 		} catch (MonumentNotFoundException e) {
 			e.printStackTrace();
 		} catch (CommentNotFoundException e) {
@@ -66,6 +89,7 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	@Override
@@ -93,6 +117,7 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 	{
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		this.satellite = false;
+		progressDialog = new ProgressDialog(this);
 	}
 
 	private void initViews()
@@ -116,37 +141,35 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 		itemizedoverlay = new MyItemizedOverlay(drawable, mapView);
 
 	}
-	
+
 	private void initLocation()
-	{
+	{	
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				5000, 10, this);
 	}
-	
+
 	private void afficheListeDeMonuments(ArrayList<Monument> monuments)
 	{
 		for (Monument monument : monuments)
 		{
 			Location loc = monument.getLocation();
 			GeoPoint point = new GeoPoint((int) (loc.getLatitude() * 1E6), (int) (loc.getLongitude() * 1E6));
-			afficherMarker(point, monument.getLibelle(), monument.getDescription());
+			afficherMarker(point, monument.getLibelle(), monument.getDescription(), monument.getId());
 		}
-	
+
 	}
-	
+
 	private void animateToMyLocation()
 	{
-		mapView.getController().animateTo(myLocationOverlay.getMyLocation());
-//		myLocationOverlay.runOnFirstFix(new Runnable() {
-//			public void run() {
-//				mapView.getController().animateTo(
-//						myLocationOverlay.getMyLocation());
-//			}
-//		});
+		if(myLocationOverlay.getMyLocation() != null)
+			mapView.getController().animateTo(myLocationOverlay.getMyLocation());
+
 	}
-	
-	private void animateToMonument(GeoPoint point)
+
+	private void animateToMonument(Monument monument)
 	{
+		Location loc = monument.getLocation();
+		GeoPoint point = new GeoPoint((int) (loc.getLatitude() * 1E6), (int) (loc.getLongitude() * 1E6));
 		mapView.getController().animateTo(point);
 	}
 
@@ -164,7 +187,7 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 
 
 	public void onLocationChanged(Location location) {
-		
+
 	}
 
 	public void onProviderDisabled(String provider) {
@@ -184,13 +207,8 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 	 * Affichage d'un monument
 	 * ----------------------------------------------
 	 */
-	private void afficherMarker() {
 
-		this.afficherMarker(mapView.getMapCenter(), "Pas de libellé", "Pas de description");
-
-	}
-
-	private void afficherMarker(GeoPoint point, String libelle, String description)
+	private void afficherMarker(GeoPoint point, String libelle, String description, int idMonument)
 	{
 		Geocoder gcd = new Geocoder(MonumentsMapActivity.this,
 				Locale.getDefault());
@@ -208,7 +226,8 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 
 				addr = addresses.get(0).getAddressLine(0);
 
-				OverlayItem overlayitem = new OverlayItem(point, libelle, description);
+				MyOverlayItem overlayitem = new MyOverlayItem(point, libelle, description, idMonument);
+				
 				itemizedoverlay.addOverlay(overlayitem);
 				mapView.getOverlays().add(itemizedoverlay);
 			}
@@ -217,7 +236,7 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Permet de passer d'un affichage satellite à un afichage plan 
 	 * en fonction de l'attribut boolean 'satellite'
@@ -227,7 +246,7 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 		this.mapView.setSatellite(!this.satellite);
 		this.satellite = !this.satellite;
 	}
-	
+
 	// =============================
 	// Menu
 	// =============================

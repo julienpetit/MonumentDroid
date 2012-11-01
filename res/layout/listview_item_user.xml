@@ -26,4 +26,6 @@
             android:layout_height="fill_parent" />
     </LinearLayout>
 
+    <View style="@style/traitListItem" />
+
 </LinearLayout>

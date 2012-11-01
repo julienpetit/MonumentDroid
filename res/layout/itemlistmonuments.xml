@@ -20,4 +20,7 @@
         android:layout_height="wrap_content"
         android:text="02/02/1992" />
 
+    <View
+        style="@style/traitListItem"
+        />
 </LinearLayout>
