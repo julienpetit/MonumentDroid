@@ -20,5 +20,5 @@ public class MyOverlayItem extends OverlayItem {
 		this.idMonument = idMonument;
 	}
 
-	
+
 }

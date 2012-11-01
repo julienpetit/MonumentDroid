@@ -32,7 +32,6 @@ public class TapControlledMapView extends MapView implements OnGestureListener {
     private void setupGestures() {
     	gd = new GestureDetector(this);  
         
-        //set the on Double tap listener  
         gd.setOnDoubleTapListener(new OnDoubleTapListener() {
 
 			public boolean onSingleTapConfirmed(MotionEvent e) {
