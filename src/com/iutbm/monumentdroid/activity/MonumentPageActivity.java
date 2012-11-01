@@ -53,6 +53,7 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 	private TextView libelleTextView;
 	private TextView descriptionTextView;
 	private TextView adresseTextView;
+	private TextView utilisateurTextView;
 	private Button ajouterCommentaireButton;
 	private LinearLayout commentairesLinearLayout;
 
@@ -116,6 +117,14 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 	private void populateViews() {
 		this.libelleTextView.setText(monument.getLibelle());
 		this.descriptionTextView.setText(monument.getDescription());
+		
+		User user;
+		try {
+			user = new User(this, monument.getIdUser());
+			this.utilisateurTextView.setText("Posté par " + user.getLogin() + " le " + formatDate.format(monument.getDate()));
+		} catch (UserNotFoundException e) {
+			e.printStackTrace();
+		}
 
 		this.updateListComments();
 	}
@@ -136,6 +145,7 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 		descriptionTextView 		= (TextView) findViewById(R.monumentpage.descriptionTextView);
 		commentairesLinearLayout   	= (LinearLayout) findViewById(R.monumentpage.commentairesLinearLayout);
 		adresseTextView 			= (TextView) findViewById(R.monumentpage.adresseTextView);
+		utilisateurTextView			= (TextView) findViewById(R.monumentpage.utilisateurTextView);
 		//		ajouterCommentaireButton;
 	}
 
