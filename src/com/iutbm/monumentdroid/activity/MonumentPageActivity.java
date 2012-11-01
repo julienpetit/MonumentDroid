@@ -91,7 +91,7 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 		this.initViews();
 		this.initLocation();
 		this.populateViews();
-
+		this.updateAdresse();
 	}
 
 
@@ -177,12 +177,17 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 		updateListComments();
 	}
 
+	/**
+	 * Met à jour la liste de commentaires
+	 */
 	private void updateListComments()
 	{
+		// Suppression des commentaires existants
 		commentairesLinearLayout.removeAllViews();
 
 		LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
 
+		// Pas de commentaire --> affichage qu'il n'y en a pas
 		if(this.monument.getListeDeCommentaires().size() == 0)
 		{
 			TextView pasDeMonumentTextView = new TextView(this);
@@ -191,28 +196,33 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 			return;
 		}
 
+		// Parcours de la liste de commentaires et affichage
 		for (Comment comment : this.monument.getListeDeCommentaires()){           
 
+			// Création d'un container
 			LinearLayout llItem = (LinearLayout) inflater.inflate(R.layout.itemlistecommentaires, null);
 
+			// Création d'un textView contenant le pseudo
 			TextView pseudo = (TextView) llItem.findViewById(R.itemlistecommentaires.nomUser);
 			pseudo.setText(comment.getUser().getLogin());
 
+			// Création d'un textView contenant le message
 			TextView message = (TextView) llItem.findViewById(R.itemlistecommentaires.commentaire);
 			message.setText(comment.getMessage());
 
+			// Création d'un textView contenant la date d'ajout du message
 			TextView date = (TextView) llItem.findViewById(R.itemlistecommentaires.date);
 			date.setText(formatDate.format(comment.getDate()));
 
-			// To know wich item has been clicked
+			// Ajout de l'identifiant du commentaire à la vue
 			llItem.setTag(comment.getId());
 
-			// In the onClickListener just get the id using getTag() on the view
+			// Evenement lors du clic sur le message
 			llItem.setOnLongClickListener(new OnLongClickListener() {
 
 				public boolean onLongClick(View v) {
 
-
+					// TO DOO Later... After IUT...:)
 
 					return false;
 				}
@@ -222,7 +232,7 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 	}
 
 	/**
-	 * Met l'adresse du moument à jour
+	 * Met l'adresse du monument à jour
 	 */
 	private void updateAdresse()
 	{
@@ -232,8 +242,8 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 		List<Address> addresses;
 
 		try {
-			addresses = gcd.getFromLocation((location.getLatitude()),
-					(location.getLongitude()), 1);
+			addresses = gcd.getFromLocation((monument.getLocation().getLatitude()),
+					(monument.getLocation().getLongitude()), 1);
 
 			if (addresses.size() > 0 && addresses != null) {
 				Address addres = addresses.get(0);
@@ -244,7 +254,6 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 

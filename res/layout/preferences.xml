@@ -10,7 +10,7 @@
             android:title="Précision" >
 
             <com.iutbm.monumentdroid.preferences.SeekBarPreference
-                android:defaultValue="16"
+                android:defaultValue="22"
                 android:key="gps_accuracy"
                 android:max="50"
                 android:summary="Distance maximale autorisée pour l&apos;enregistrement d&apos;un monument. Si la précision de votre GPS est supérieur à la distance que vous programmez, vous ne pourres pas enregistrer de monuments. "
