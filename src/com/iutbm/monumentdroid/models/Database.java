@@ -8,7 +8,7 @@ import android.util.Log;
  
 public class Database extends SQLiteOpenHelper {
  
-	public static final int VERSION_BDD = 2;
+	public static final int VERSION_BDD = 1;
 	public static final String NAME_DATABASE = "monumentdroid.db";
 	
 
@@ -25,9 +25,14 @@ public class Database extends SQLiteOpenHelper {
 		db.execSQL(User.CREATE_TABLE_USERS);
 		
 		// Ajout des utilisateurs par défaut
-		db.execSQL("INSERT INTO " + User.TABLE_NAME + "");
+		for(String query : User.ADD_DEFAULT_VALUES)
+			db.execSQL(query);
 		
 		db.execSQL(Monument.CREATE_TABLE_MONUMENT);
+		
+		for(String query : Monument.ADD_DEFAULT_VALUES)
+			db.execSQL(query);
+		
 		db.execSQL(Comment.CREATE_TABLE_COMMENT);
 		Log.d("sql", "onCreate");
 	}

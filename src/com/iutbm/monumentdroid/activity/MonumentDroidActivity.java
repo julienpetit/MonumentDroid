@@ -46,9 +46,11 @@ public class MonumentDroidActivity extends Activity implements OnClickListener{
 		// Récupération de l'utilisateur connecté
 		Prefs prefs = new Prefs(getBaseContext());
 
-		int idUser = Integer.valueOf(prefs.getPreference("idUser"));
+		
 
 		try {
+			int idUser = Integer.valueOf(prefs.getPreference("idUser"));
+			
 			User user = new User(this, idUser);
 			Log.d(LOG_ID, "user : " + user.toString());
 
@@ -60,10 +62,12 @@ public class MonumentDroidActivity extends Activity implements OnClickListener{
 		}
 
 
-		Button buttonMap = (Button) findViewById(R.main.mapButton);
+		final Button buttonMap = (Button) findViewById(R.main.mapButton);
 		buttonMap.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
+//				buttonMap.setBackgroundColor(0);
+				
 				if(isOnline())
 					startActivity(new Intent(getBaseContext(), MonumentsMapActivity.class));
 				else 

@@ -32,9 +32,12 @@ public class User {
 
 	// Création de la table
 	public static final String CREATE_TABLE_USERS = "CREATE TABLE IF NOT EXISTS " + User.TABLE_NAME + " (" + User.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+ User.COL_LOGIN + " TEXT NOT NULL, " 
-			+ User.COL_MDP + " TEXT NOT NULL, " 
-			+ User.COL_DATE + " long);";
+													+ User.COL_LOGIN + " TEXT NOT NULL, " 
+													+ User.COL_MDP + " TEXT NOT NULL, " 
+													+ User.COL_DATE + " long);";
+
+	public static final String[] ADD_DEFAULT_VALUES =  {"INSERT INTO " + TABLE_NAME + " VALUES(null, 'julien', 'IUTBM', '1351355063648');", 
+														"INSERT INTO " + TABLE_NAME + " VALUES(null, 'pierrick', 'IUTBM', '1351355063648');"}; 					
 
 	// Attributs
 	private int id = 0;

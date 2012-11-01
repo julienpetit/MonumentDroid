@@ -186,7 +186,7 @@ public class MonumentPageActivity extends Activity implements LocationListener{
 		if(this.monument.getListeDeCommentaires().size() == 0)
 		{
 			TextView pasDeMonumentTextView = new TextView(this);
-			pasDeMonumentTextView.setText("Il n'y à pas encore de commentaires. Appuyez sur le bouton menu pour en ajouter.");
+			pasDeMonumentTextView.setText("Il n'y a pas encore de commentaires. Appuyez sur le bouton menu pour en ajouter.");
 			commentairesLinearLayout.addView(pasDeMonumentTextView);
 			return;
 		}

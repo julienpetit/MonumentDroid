@@ -2,11 +2,6 @@ package com.iutbm.monumentdroid.activity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.iutbm.monumentdroid.exceptions.UserNotFoundException;
-import com.iutbm.monumentdroid.models.User;
-import com.iutbm.monumentdroid.preferences.Prefs;
-
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -23,6 +18,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
+
+import com.iutbm.monumentdroid.exceptions.UserNotFoundException;
+import com.iutbm.monumentdroid.models.User;
+import com.iutbm.monumentdroid.preferences.Prefs;
 
 public class LoginActivity extends Activity {
 

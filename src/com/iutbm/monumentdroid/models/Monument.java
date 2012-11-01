@@ -55,6 +55,16 @@ public class Monument {
 			+ COL_DATE 			+ " long,"
 			+ COL_IDUSER 		+ " INTEGER);";
 
+	public static final String[] ADD_DEFAULT_VALUES = {"INSERT INTO " + TABLE_NAME + " VALUES( null, 'Lion de Belfort', 'Le Lion de Belfort est une sculpture monumentale en haut-relief du sculpteur alsacien Auguste Bartholdi, située à Belfort en France au pied de la falaise de la citadelle.', '47.636633', '6.864519', '3', '420', '1351787659492', '1');", 
+														"INSERT INTO " + TABLE_NAME + " VALUES( null, 'Théâtre Gallo-Romain de Mandeure','Le théâtre gallo-romain de Mandeure se situe dans le pays de Montbéliard (département du Doubs, France). Il date du ier siècle, et est donc contemporain du Colisée à Rome. Il a été découvert en 1819, fouillé en 1820 puis à partir de 19461. Il est protégé au titre des monuments historiques.', '47.44901', '6.79622', '13', '389', '1351787659492', '2');",
+														"INSERT INTO " + TABLE_NAME + " VALUES( null, 'La tour Eiffel','La tour Eiffel est une tour de fer puddlé de 324 mètres de hauteur située à Paris. ce monument est devenu le symbole de la capitale française, et un site touristique de premier plan : il s agit du second site culturel français payant le plus visité en 2011, avec 7,1 millions de visiteurs dont 75% d étrangers en 2011', '48.85825', '2.2945', '4', '200', '1351787659492', '2');",
+														"INSERT INTO " + TABLE_NAME + " VALUES( null, 'Les volcans d auvergne','Le volcanisme du Massif central a été actif sur les périodes tertiaire et quaternaire, l âge des volcans s étageant de 65 Millions d années pour les plus anciens à seulement 7000 ans (voire moins)1 pour la chaîne des Puys. Le point culminant de l Auvergne, 1 886 m, se situe au Puy de Sancy dans le massif des monts Dore datant du tertiaire.', '45.664566', '2.950859', '8', '600', '1351787659492', '1');",
+														"INSERT INTO " + TABLE_NAME + " VALUES( null, 'Stonehenge','	Stonehenge, dont le nom signifie « les pierres suspendues », est un grand monument mégalithique composé d un ensemble de structures circulaires concentriques, érigé entre -2800 et -11001, du Néolithique à l âge du bronze. Il est situé à treize kilomètres au nord de Salisbury, et à quatre kilomètres à l ouest d Amesbury', '51.178889', '-1.826389', '8', '600', '1351787659492', '1');"
+
+
+														};
+
+	
 	// Attributs
 	private int id = 0;
 	private String libelle;

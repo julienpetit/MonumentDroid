@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
@@ -39,7 +40,6 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 	private MyLocationOverlay myLocationOverlay;
 	private MyItemizedOverlay itemizedoverlay;
 
-	private ProgressDialog progressDialog;
 	private boolean satellite;
 
 	/**
@@ -68,18 +68,15 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 			this.animateToMonument(monument);
 		} catch( Exception e)
 		{
-			e.printStackTrace();
 			myLocationOverlay.runOnFirstFix(new Runnable() {
 				public void run() {
 					mapView.getController().animateTo(
 							myLocationOverlay.getMyLocation());
 				}
 			});
+			mapController.setZoom(6);
 		}
 		
-		
-
-
 		try {
 			afficheListeDeMonuments(Monument.getAllMonuments(getApplicationContext(), 0, null));
 		} catch (MonumentNotFoundException e) {
@@ -113,18 +110,27 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 	 * Initialize
 	 * ----------------------------------------------
 	 */
+	
+	/**
+	 * Initialise les attributs de la classe
+	 */
 	private void initAttributs()
 	{
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		this.satellite = false;
-		progressDialog = new ProgressDialog(this);
 	}
 
+	/**
+	 * Récupère les vue XML sous forme d'objets
+	 */
 	private void initViews()
 	{
 		mapView = (MapView) findViewById(R.id.map);
 	}
 
+	/**
+	 * Initialise la carte
+	 */
 	private void initMap()
 	{
 		mapView.setBuiltInZoomControls(true);
@@ -139,15 +145,21 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 				R.drawable.red_marker_b);
 
 		itemizedoverlay = new MyItemizedOverlay(drawable, mapView);
-
 	}
 
+	/**
+	 * Initialise les données de géolocalisation
+	 */
 	private void initLocation()
 	{	
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				5000, 10, this);
 	}
 
+	/**
+	 * Affiche toutes les images des monuments sur la carte
+	 * @param monuments
+	 */
 	private void afficheListeDeMonuments(ArrayList<Monument> monuments)
 	{
 		for (Monument monument : monuments)
@@ -159,13 +171,21 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 
 	}
 
+	/**
+	 * Permet de placer le centre le la mapView sur notre position
+	 */
 	private void animateToMyLocation()
 	{
 		if(myLocationOverlay.getMyLocation() != null)
 			mapView.getController().animateTo(myLocationOverlay.getMyLocation());
-
+		else
+			Toast.makeText(getApplicationContext(), "Vous devez activer votre GPS pour afficher votre position.", Toast.LENGTH_LONG).show();
 	}
 
+	/**
+	 * Permet de centrer la mapView sur un monument
+	 * @param monument
+	 */
 	private void animateToMonument(Monument monument)
 	{
 		Location loc = monument.getLocation();
@@ -208,6 +228,15 @@ public class MonumentsMapActivity extends MapActivity implements LocationListene
 	 * ----------------------------------------------
 	 */
 
+	/**
+	 * Permet d'affiche une image sur la carte
+	 * Correspond à un monument
+	 * Affiche la description et le libellé
+	 * @param point
+	 * @param libelle
+	 * @param description
+	 * @param idMonument
+	 */
 	private void afficherMarker(GeoPoint point, String libelle, String description, int idMonument)
 	{
 		Geocoder gcd = new Geocoder(MonumentsMapActivity.this,
